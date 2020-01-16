@@ -1,4 +1,14 @@
-* {
-    margin: 0;
-    padding: 0;
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    overflow: hidden;
+
+    /* This centers our sketch horizontally. */
+    justify-content: center;
+
+    /* This centers our sketch vertically. */
+    align-items: center;
 }

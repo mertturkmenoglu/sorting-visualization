@@ -7,7 +7,7 @@ let showNumbers;
 let numberCount = 50;
 
 function setup() {
-    createCanvas(640, 640);
+    createCanvas(960, 640);
     background(0);
 
     arr = randomArray(numberCount, 1, 50);
