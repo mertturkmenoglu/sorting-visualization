@@ -51,7 +51,13 @@ function keyPressed() {
         allArr = [];
         drawingStatus = true;
         quickSort(arr.slice(), 0, arr.length - 1);
-        console.log(allArr);
+        loopStatus = "loop";
+    }
+
+    if (key === 'm' || key === 'M') {
+        allArr = [];
+        drawingStatus = true;
+        mergeSort(arr.slice(), 0, arr.length - 1);
         loopStatus = "loop";
     }
 }
@@ -142,4 +148,59 @@ function quickSortPartition(a, low, high) {
     allArr.push(a.slice());
 
     return i;
+}
+
+function mergeSort(a, low, high) {
+    if (low < high) {
+        let mid = parseInt((low + high) / 2);
+        mergeSort(a, low, mid);
+        mergeSort(a, mid + 1, high);
+        merge(a, low, mid, high);
+    }
+}
+
+function merge(a, low, mid, high) {
+    let n1 = mid - low + 1;
+    let n2 = high - mid;
+
+    let l = new Array(n1);
+    let r = new Array(n2);
+
+    for (let i = 0; i < n1; i++) {
+        l[i] = a[low + i];
+    }
+
+    for (let i = 0; i < n2; i++) {
+        r[i] = a[mid + i + 1];
+    }
+
+    let i = 0;
+    let j = 0;
+    let k = low;
+
+    while (i < n1 && j < n2) {
+        if (l[i] <= r[j]) {
+            a[k] = l[i];
+            i++;
+        } else {
+            a[k] = r[j];
+            j++;
+        }
+        k++;
+        allArr.push(a.slice());
+    }
+
+    while (i < n1) {
+        a[k] = l[i];
+        i++;
+        k++;
+        allArr.push(a.slice());
+    }
+
+    while (j < n2) {
+        a[k] = r[j];
+        j++;
+        k++;
+        allArr.push(a.slice());
+    }
 }
