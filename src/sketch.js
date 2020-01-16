@@ -1,7 +1,7 @@
 let arr;
 let minElement;
 let maxElement;
-let numberCount = 50;
+let numberCount = 200;
 let allArr;
 let k;
 let drawingStatus;
@@ -15,7 +15,7 @@ function setup() {
     arr = randomArray(numberCount, 1, 50);
     calculateArray(arrayExtremums(arr));
     k = 0;
-    frameRate(60);
+    frameRate(120);
     drawingStatus = false;
     loopStatus = "noLoop";
 }
@@ -44,12 +44,17 @@ function keyPressed() {
         allArr = [];
         drawingStatus = true;
         bubbleSort(arr.slice());
-        if (loopStatus === "noLoop") {
-            loopStatus = "loop";
-        }
+        loopStatus = "loop";
+    }
+
+    if (key === 'q' || key === 'Q') {
+        allArr = [];
+        drawingStatus = true;
+        quickSort(arr.slice(), 0, arr.length - 1);
+        console.log(allArr);
+        loopStatus = "loop";
     }
 }
-
 
 function drawArray(a, min, max) {
     let r = width / a.length;
@@ -104,4 +109,37 @@ function bubbleSort(a) {
         }
     }
     allArr.push(a.slice());
+}
+
+function quickSort(a, low, high) {
+    if (low < high) {
+        let pIndex = quickSortPartition(a, low, high);
+        quickSort(a, low, pIndex - 1);
+        quickSort(a, pIndex + 1, high);
+    }
+}
+
+function quickSortPartition(a, low, high) {
+    let pivot = a[high];
+
+    let i = low - 1;
+
+    for (let j = low; j < high; j++) {
+        if (a[j] < pivot) {
+            i++;
+            allArr.push(a.slice());
+            let tmp = a[i];
+            a[i] = a[j];
+            a[j] = tmp;
+        }
+    }
+
+    i++;
+    allArr.push(a.slice());
+    let tmp = a[high];
+    a[high] = a[i];
+    a[i] = tmp;
+    allArr.push(a.slice());
+
+    return i;
 }
