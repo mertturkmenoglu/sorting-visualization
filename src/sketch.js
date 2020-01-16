@@ -4,6 +4,8 @@ let maxElement;
 let numberCount = 50;
 let allArr;
 let k;
+let drawingStatus;
+let loopStatus;
 
 function setup() {
     createCanvas(960, 640);
@@ -12,18 +14,42 @@ function setup() {
 
     arr = randomArray(numberCount, 1, 50);
     calculateArray(arrayExtremums(arr));
-    bubbleSort(arr, minElement, maxElement);
     k = 0;
     frameRate(60);
+    drawingStatus = false;
+    loopStatus = "noLoop";
 }
 
 function draw() {
     clear();
     background(51);
-    drawArray(allArr[k++], minElement, maxElement);
-    if (k >= allArr.length)
-        noLoop();
+
+    if (drawingStatus) {
+        if (loopStatus === "loop") {
+            drawArray(allArr[k++], minElement, maxElement);
+            if (k >= allArr.length) {
+                k = 0;
+                loopStatus = "noLoop";
+            }
+        } else {
+            drawArray(allArr[allArr.length -1], minElement, maxElement);
+        }
+    } else {
+        drawArray(arr, minElement, maxElement);
+    }
 }
+
+function keyPressed() {
+    if (key === 'b' || key === 'B') {
+        allArr = [];
+        drawingStatus = true;
+        bubbleSort(arr.slice());
+        if (loopStatus === "noLoop") {
+            loopStatus = "loop";
+        }
+    }
+}
+
 
 function drawArray(a, min, max) {
     let r = width / a.length;
