@@ -1,3 +1,12 @@
+let algSelect;
+let nSelect;
+let startButton;
+let generateButton;
+let orderedButton;
+let shuffleButton;
+let resetButton;
+let helpButton;
+
 function initDOM() {
     algSelect = document.getElementById('alg-select');
     nSelect = document.getElementById('n-select');
