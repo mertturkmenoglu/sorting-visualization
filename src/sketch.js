@@ -27,7 +27,8 @@ function setup() {
     algorithmNames = {
         'Bubble Sort': 'bubbleSort',
         'Quick Sort': 'quickSort',
-        'Merge Sort': 'mergeSort'
+        'Merge Sort': 'mergeSort',
+        'Insertion Sort': 'insertionSort'
     };
 
     validKeys = {

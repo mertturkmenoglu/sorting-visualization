@@ -13,6 +13,9 @@ function callSortFunction(fName) {
         case 'mergeSort':
             mergeSort(arr.slice(), 0, arr.length - 1);
             break;
+        case 'insertionSort':
+            insertionSort(arr.slice());
+            break;
     }
 }
 
@@ -126,3 +129,22 @@ function merge(a, low, mid, high) {
         allArr.push(a.slice());
     }
 }
+
+function insertionSort(a) {
+    for (let i = 0; i < a.length; i++) {
+        let current = a[i];
+        let j = i - 1;
+
+        while (j >= 0 && a[j] > current) {
+            a[j + 1] = a[j];
+            j--;
+
+            allArr.push(a.slice());
+        }
+
+        a[j + 1] = current;
+        allArr.push(a.slice());
+    }
+}
+
+
