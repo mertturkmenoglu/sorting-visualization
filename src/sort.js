@@ -19,6 +19,8 @@ function callSortFunction(fName) {
         case 'selectionSort':
             selectionSort(arr.slice());
             break;
+        case 'heapSort':
+            heapSort(arr.slice());
     }
 }
 
@@ -169,3 +171,44 @@ function selectionSort(a) {
         allArr.push(a.slice());
     }
 }
+
+function heapSort(a) {
+    for (let i = Math.floor(a.length / 2) - 1; i >= 0; i--) {
+        heapify(a, a.length, i);
+    }
+
+    for (let i = a.length - 1; i >= 0; i--) {
+        let tmp = a[0];
+        a[0] = a[i];
+        a[i] = tmp;
+
+        allArr.push(a.slice());
+
+        heapify(a, i, 0);
+    }
+}
+
+function heapify(a, n, i) {
+    let largest = i;
+    let l = 2 * i + 1;
+    let r = 2 * i + 2;
+
+    if (l < n && a[l] > a[largest]) {
+        largest = l;
+    }
+
+    if (r < n && a[r] > a[largest]) {
+        largest = r;
+    }
+
+    if (largest !== i) {
+        let tmp = a[i];
+        a[i] = a[largest];
+        a[largest] = tmp;
+
+        allArr.push(a.slice());
+
+        heapify(a, n, largest);
+    }
+}
+

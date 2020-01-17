@@ -29,7 +29,8 @@ function setup() {
         'Quick Sort': 'quickSort',
         'Merge Sort': 'mergeSort',
         'Insertion Sort': 'insertionSort',
-        'Selection Sort': 'selectionSort'
+        'Selection Sort': 'selectionSort',
+        'Heap Sort': 'heapSort'
     };
 
     validKeys = {
