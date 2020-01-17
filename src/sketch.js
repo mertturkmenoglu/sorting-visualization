@@ -28,7 +28,8 @@ function setup() {
         'Bubble Sort': 'bubbleSort',
         'Quick Sort': 'quickSort',
         'Merge Sort': 'mergeSort',
-        'Insertion Sort': 'insertionSort'
+        'Insertion Sort': 'insertionSort',
+        'Selection Sort': 'selectionSort'
     };
 
     validKeys = {

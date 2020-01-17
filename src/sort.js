@@ -16,6 +16,9 @@ function callSortFunction(fName) {
         case 'insertionSort':
             insertionSort(arr.slice());
             break;
+        case 'selectionSort':
+            selectionSort(arr.slice());
+            break;
     }
 }
 
@@ -147,4 +150,22 @@ function insertionSort(a) {
     }
 }
 
+function selectionSort(a) {
+    allArr.push(a.slice());
 
+    for (let i = 0; i < a.length - 1; i++) {
+        let minIndex = i;
+
+        for (let j = i + 1; j < a.length; j++) {
+            if (a[j] < a[minIndex]) {
+                minIndex = j;
+            }
+        }
+
+        let tmp = a[minIndex];
+        a[minIndex] = a[i];
+        a[i] = tmp;
+
+        allArr.push(a.slice());
+    }
+}
