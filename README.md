@@ -1,5 +1,5 @@
 ![GitHub](https://img.shields.io/github/license/mertturkmenoglu/sorting-visualization) ![GitHub followers](https://img.shields.io/github/followers/mertturkmenoglu.svg?style=social)
-# Path Finding Algorithms
+# Sorting Visualization
 ***
 <img src="assets/example.gif" alt="Example" width="640" height="284" />
 
