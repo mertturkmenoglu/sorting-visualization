@@ -4,9 +4,29 @@
     <meta charset="UTF-8">
     <title>Sorting Visualization</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <script src="../lib/p5.js"></script>
+    <script src="sketch.js"></script>
 </head>
 <body>
-    <script src="sketch.js"></script>
+    <div id="nav-bar">
+        <div class="nav-bar-alg-selection">
+            <label for="alg-select" class="select-text">Algorithm:</label>
+            <select id="alg-select" class="nav-bar-select">
+                <option value="Bubble Sort" class="nav-bar-select-item">Bubble Sort</option>
+            </select>
+            <label for="n-select" class="select-text">Element Count:</label>
+            <select id="n-select" class="nav-bar-select">
+                <option value="8" class="nav-bar-select-item">8</option>
+            </select>
+        </div>
+        <div class="nav-bar-button-group">
+            <button id="start-button" class="nav-bar-button-item">Start</button>
+            <button id="generate-button"  class="nav-bar-button-item">Generate</button>
+            <button id="reset-button" class="nav-bar-button-item">Reset</button>
+            <button id="help-button"  class="nav-bar-button-item">Help</button>
+        </div>
+    </div>
+    <div id="container"></div>
 </body>
 </html>

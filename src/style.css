@@ -1,14 +1,59 @@
 html, body {
     height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
+    font-size: 24px;
 }
 
-body {
+#nav-bar {
     display: flex;
-    overflow: hidden;
+    justify-content: space-around;
+    align-items: center;
+    height: 128px;
+}
+
+#container {
+    display: flex;
 
     /* This centers our sketch horizontally. */
     justify-content: center;
 
     /* This centers our sketch vertically. */
     align-items: center;
+}
+
+.nav-bar-button-item {
+    text-align: center;
+    /*text-decoration: none;*/
+    display: inline-block;
+    font-size: 24px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    padding-left: 2px;
+    padding-right: 2px;
+    border: 2px solid #555555;
+}
+
+.nav-bar-button-item:hover {
+    background-color: #555555;
+    color: white;
+}
+
+.nav-bar-select {
+    background-color: white;
+    color: black;
+    border: 2px solid #555555;
+    font-size: 24px;
+}
+
+.nav-bar.nav-bar-select-item {
+    font-size: 24px;
+}
+
+.select-text {
+    color: #555555;
+    font-size: 24px;
 }

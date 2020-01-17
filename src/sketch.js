@@ -6,10 +6,11 @@ let allArr;
 let k;
 let drawingStatus;
 let loopStatus;
+let cnv;
 
 function setup() {
-    createCanvas(960, 640);
-    background(0);
+    cnv = createCanvas(960, 640);
+    cnv.parent('container');
     allArr = [];
 
     arr = randomArray(numberCount, 1, 50);
@@ -22,7 +23,7 @@ function setup() {
 
 function draw() {
     clear();
-    background(51);
+    background(127);
 
     if (drawingStatus) {
         if (loopStatus === "loop") {
@@ -97,7 +98,7 @@ function randomArray(n, min, max) {
     let a = [];
 
     for (let i = 0; i < n; i++) {
-        a.push(Math.floor(random(min, max)));
+        a.push(random(min, max));
     }
 
     return a;
