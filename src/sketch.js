@@ -1,4 +1,4 @@
-let arr;
+let arr = [];
 let minElement;
 let maxElement;
 let elementCount;
@@ -11,6 +11,8 @@ let algSelect;
 let nSelect;
 let startButton;
 let generateButton;
+let orderedButton;
+let shuffleButton;
 let resetButton;
 let helpButton;
 let currAlg;
@@ -50,19 +52,21 @@ function initDOM() {
     nSelect = document.getElementById('n-select');
     startButton = document.getElementById('start-button');
     generateButton = document.getElementById('generate-button');
+    orderedButton = document.getElementById('ordered-button');
+    shuffleButton = document.getElementById('shuffle-button');
     resetButton = document.getElementById('reset-button');
     helpButton = document.getElementById('help-button');
 
     algSelect.onchange = () => {
         reset();
         updateCurrentAlgorithm(algSelect);
-        generateArray();
+        generateRandomArray();
     };
 
     nSelect.onchange = () => {
         reset();
         updateElementCount(nSelect);
-        generateArray();
+        generateRandomArray();
     };
 
     for (let a in algorithmNames) {
@@ -93,7 +97,14 @@ function initDOM() {
         drawingStatus = true;
     };
 
-    generateButton.onclick = generateArray;
+    generateButton.onclick = generateRandomArray;
+
+    orderedButton.onclick = generateOrderedArray;
+
+    shuffleButton.onclick = () => {
+        shuffleArray();
+        reset();
+    };
 
     resetButton.onclick = reset;
 
@@ -106,7 +117,28 @@ function reset() {
     k = 0;
 }
 
-function generateArray() {
+function shuffleArray() {
+    arr = shuffle(arr);
+}
+
+function generateOrderedArray() {
+    if (loopStatus !== 'loop') {
+        arr = orderedArray(elementCount);
+        calculateArray(arrayExtremums(arr));
+    }
+}
+
+function orderedArray(n) {
+    let a = [];
+
+    for (let i = 1; i <= n; i++) {
+        a.push(i);
+    }
+
+    return a;
+}
+
+function generateRandomArray() {
     if (loopStatus !== 'loop') {
         arr = randomArray(elementCount, 1, 50);
         calculateArray(arrayExtremums(arr));
