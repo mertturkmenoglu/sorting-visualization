@@ -1,24 +1,132 @@
 let arr;
 let minElement;
 let maxElement;
-let numberCount = 200;
+let elementCount;
 let allArr;
 let k;
 let drawingStatus;
 let loopStatus;
 let cnv;
+let algSelect;
+let nSelect;
+let startButton;
+let generateButton;
+let resetButton;
+let helpButton;
+let currAlg;
+let algorithmNames;
+let validKeys;
 
 function setup() {
-    cnv = createCanvas(960, 640);
+    cnv = createCanvas(1280, 640);
     cnv.parent('container');
     allArr = [];
 
-    arr = randomArray(numberCount, 1, 50);
+    algorithmNames = {
+        'Bubble Sort': 'bubbleSort',
+        'Quick Sort': 'quickSort',
+        'Merge Sort': 'mergeSort'
+    };
+
+    validKeys = {
+        'b': 'bubbleSort',
+        'q': 'quickSort',
+        'm': 'mergeSort'
+    };
+
+    initDOM();
+    elementCount = 8;
+
+    arr = randomArray(elementCount, 1, 50);
     calculateArray(arrayExtremums(arr));
     k = 0;
     frameRate(120);
     drawingStatus = false;
     loopStatus = "noLoop";
+}
+
+function initDOM() {
+    algSelect = document.getElementById('alg-select');
+    nSelect = document.getElementById('n-select');
+    startButton = document.getElementById('start-button');
+    generateButton = document.getElementById('generate-button');
+    resetButton = document.getElementById('reset-button');
+    helpButton = document.getElementById('help-button');
+
+    algSelect.onchange = () => {
+        reset();
+        updateCurrentAlgorithm(algSelect);
+        generateArray();
+    };
+
+    nSelect.onchange = () => {
+        reset();
+        updateElementCount(nSelect);
+        generateArray();
+    };
+
+    for (let a in algorithmNames) {
+        if (algorithmNames.hasOwnProperty(a)) {
+            let opt = document.createElement('option');
+            opt.appendChild(document.createTextNode(a));
+            opt.value = algorithmNames[a];
+            opt.classList.add('nav-bar-select-item');
+            algSelect.appendChild(opt);
+
+        }
+    }
+
+    for (let i = 8; i <= 512; i *= 2) {
+        let opt = document.createElement('option');
+        opt.appendChild(document.createTextNode(i.toString()));
+        opt.value = i.toString();
+        opt.classList.add('nav-bar-select-item');
+        nSelect.appendChild(opt);
+    }
+
+    updateCurrentAlgorithm(algSelect);
+    updateElementCount(nSelect);
+
+    startButton.onclick = function () {
+        reset();
+        callSortFunction(currAlg);
+        drawingStatus = true;
+    };
+
+    generateButton.onclick = generateArray;
+
+    resetButton.onclick = reset;
+
+    helpButton.onclick = () => alert('Select your algorithm and click start.');
+}
+
+function reset() {
+    drawingStatus = false;
+    loopStatus = 'noLoop';
+    k = 0;
+}
+
+function generateArray() {
+    if (loopStatus !== 'loop') {
+        arr = randomArray(elementCount, 1, 50);
+        calculateArray(arrayExtremums(arr));
+    }
+}
+
+function updateElementCount(selector) {
+    elementCount = getElementCount(selector);
+}
+
+function getElementCount(selector) {
+    return parseInt(selector.value);
+}
+
+function updateCurrentAlgorithm(selector) {
+    currAlg = getAlgorithmName(selector)
+}
+
+function getAlgorithmName(selector) {
+    return selector.value;
 }
 
 function draw() {
@@ -41,25 +149,31 @@ function draw() {
 }
 
 function keyPressed() {
-    if (key === 'b' || key === 'B') {
-        allArr = [];
-        drawingStatus = true;
-        bubbleSort(arr.slice());
-        loopStatus = "loop";
+    for (let v of Object.keys(validKeys)) {
+        if (key === v) {
+            allArr = [];
+            drawingStatus = true;
+            loopStatus = "loop";
+            callSortFunction(validKeys[v])
+        }
     }
+}
 
-    if (key === 'q' || key === 'Q') {
-        allArr = [];
-        drawingStatus = true;
-        quickSort(arr.slice(), 0, arr.length - 1);
-        loopStatus = "loop";
-    }
+function callSortFunction(fName) {
+    allArr = [];
+    drawingStatus = true;
+    loopStatus = "loop";
 
-    if (key === 'm' || key === 'M') {
-        allArr = [];
-        drawingStatus = true;
-        mergeSort(arr.slice(), 0, arr.length - 1);
-        loopStatus = "loop";
+    switch (fName) {
+        case 'bubbleSort':
+            bubbleSort(arr.slice());
+            break;
+        case 'quickSort':
+            quickSort(arr.slice(), 0, arr.length - 1);
+            break;
+        case 'mergeSort':
+            mergeSort(arr.slice(), 0, arr.length - 1);
+            break;
     }
 }
 
