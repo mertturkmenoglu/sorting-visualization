@@ -37,6 +37,9 @@ function callSortFunction(fName) {
                 radixSort(arr.slice());
             }
             break;
+        case 'shellSort':
+            shellSort(arr.slice());
+            break;
     }
 
     after = millis();
@@ -292,5 +295,21 @@ function countSort(a, exp) {
     for (let i = 0; i < a.length; i++) {
         a[i] = output[i];
         allArr.push(a.slice());
+    }
+}
+
+function shellSort(a) {
+    for (let gap = Math.floor(a.length / 2); gap > 0; gap = Math.floor(gap / 2)) {
+        for (let i = gap; i < a.length; i++) {
+            let tmp = a[i];
+            let j;
+            for (j = i; j >= gap && a[j - gap] > tmp; j -= gap) {
+                a[j] = a[j - gap];
+                allArr.push(a.slice());
+            }
+
+            a[j] = tmp;
+            allArr.push(a.slice());
+        }
     }
 }

@@ -25,7 +25,8 @@ function setup() {
         'Selection Sort': 'selectionSort',
         'Heap Sort': 'heapSort',
         'Tim Sort': 'timSort',
-        'Radix Sort': 'radixSort'
+        'Radix Sort': 'radixSort',
+        'Shell Sort': 'shellSort'
     };
 
     validKeys = {
