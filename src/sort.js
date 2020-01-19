@@ -21,6 +21,10 @@ function callSortFunction(fName) {
             break;
         case 'heapSort':
             heapSort(arr.slice());
+            break;
+        case 'timSort':
+            timSort(arr.slice());
+            break;
     }
 }
 
@@ -212,3 +216,36 @@ function heapify(a, n, i) {
     }
 }
 
+function timSortInsertion(a, low, high) {
+    for (let i = low + 1; i <= high; i++) {
+        let tmp = a[i];
+        let j = i - 1;
+
+        while (a[j] > tmp && j >= low) {
+            a[j+1] = a[j];
+            j--;
+            allArr.push(a.slice());
+        }
+
+        a[j+1] = tmp;
+        allArr.push(a.slice());
+    }
+
+}
+
+function timSort(a) {
+    const RUN = 32;
+    const n = a.length;
+
+    for (let i = 0; i < n; i += RUN) {
+        timSortInsertion(a, i, Math.min(i+RUN-1, n-1));
+    }
+
+    for (let size = RUN; size < n; size *= 2) {
+        for (let left = 0; left < n; left += 2*size) {
+            let mid = left + size - 1;
+            let right = Math.min((left + 2*size-1), (n-1));
+            merge(a, left, mid, right);
+        }
+    }
+}
