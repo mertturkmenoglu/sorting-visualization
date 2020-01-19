@@ -43,6 +43,9 @@ function callSortFunction(fName) {
         case 'cycleSort':
             cycleSort(arr.slice());
             break;
+        case 'oddEvenSort':
+            oddEvenSort(arr.slice());
+            break;
     }
 
     after = millis();
@@ -357,6 +360,33 @@ function cycleSort(a) {
             a[pos] = item;
             item = tmp;
             allArr.push(a.slice());
+        }
+    }
+}
+
+function oddEvenSort(a) {
+    let sorted = false;
+
+    while (!sorted) {
+        sorted = true;
+        for (let i = 1; i < a.length - 1; i += 2) {
+            if (a[i] > a[i+1]) {
+                let tmp = a[i];
+                a[i] = a[i+1];
+                a[i+1] = tmp;
+                allArr.push(a.slice());
+                sorted = false;
+            }
+        }
+
+        for (let i = 0; i < a.length - 1; i += 2) {
+            if (a[i] > a[i+1]) {
+                let tmp = a[i];
+                a[i] = a[i+1];
+                a[i+1] = tmp;
+                allArr.push(a.slice());
+                sorted = false;
+            }
         }
     }
 }

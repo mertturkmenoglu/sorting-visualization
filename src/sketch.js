@@ -27,7 +27,8 @@ function setup() {
         'Tim Sort': 'timSort',
         'Radix Sort': 'radixSort',
         'Shell Sort': 'shellSort',
-        'Cycle Sort': 'cycleSort'
+        'Cycle Sort': 'cycleSort',
+        'Odd Even Sort': 'oddEvenSort'
     };
 
     validKeys = {
