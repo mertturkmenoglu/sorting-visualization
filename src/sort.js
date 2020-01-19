@@ -2,6 +2,10 @@ function callSortFunction(fName) {
     allArr = [];
     drawingStatus = true;
     loopStatus = "loop";
+    let before;
+    let after;
+
+    before = millis();
 
     switch (fName) {
         case 'bubbleSort':
@@ -26,6 +30,9 @@ function callSortFunction(fName) {
             timSort(arr.slice());
             break;
     }
+
+    after = millis();
+    return after - before;
 }
 
 function bubbleSort(a) {

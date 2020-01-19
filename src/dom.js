@@ -53,7 +53,7 @@ function initDOM() {
 
     startButton.onclick = function () {
         reset();
-        callSortFunction(currAlg);
+        lastOperationTime = callSortFunction(currAlg);
         drawingStatus = true;
     };
 

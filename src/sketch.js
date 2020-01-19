@@ -10,6 +10,7 @@ let cnv;
 let currAlg;
 let algorithmNames;
 let validKeys;
+let lastOperationTime;
 
 function setup() {
     cnv = createCanvas(1280, 640);
@@ -34,6 +35,7 @@ function setup() {
 
     initDOM();
     elementCount = 8;
+    lastOperationTime = 0;
 
     arr = randomArray(elementCount, 1, 50);
     calculateArray(arrayExt(arr));
@@ -66,6 +68,13 @@ function draw() {
     } else {
         drawArray(arr, minElement, maxElement);
     }
+
+
+    if (lastOperationTime !== 0) {
+        textSize(24);
+        fill(255);
+        text('Sorting time: ' + (lastOperationTime / 1000).toFixed(6) + ' seconds', 20, 20);
+    }
 }
 
 function drawArray(a, min, max) {
@@ -83,7 +92,7 @@ function keyPressed() {
             allArr = [];
             drawingStatus = true;
             loopStatus = "loop";
-            callSortFunction(validKeys[v])
+            lastOperationTime = callSortFunction(validKeys[v]);
         }
     }
 }
