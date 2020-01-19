@@ -29,6 +29,14 @@ function callSortFunction(fName) {
         case 'timSort':
             timSort(arr.slice());
             break;
+        case 'radixSort':
+            if (arr.some(e => e !== Math.floor(e))) {
+                alert('Radix sort can be applied to integer values');
+                return 0;
+            } else {
+                radixSort(arr.slice());
+            }
+            break;
     }
 
     after = millis();
@@ -254,5 +262,35 @@ function timSort(a) {
             let right = Math.min((left + 2*size-1), (n-1));
             merge(a, left, mid, right);
         }
+    }
+}
+
+function radixSort(a) {
+    let max = Math.max(...a); // Get maximum element
+    for (let exp = 1; Math.floor(max / exp) > 0; exp *= 10) {
+        countSort(a, exp);
+    }
+}
+
+function countSort(a, exp) {
+    let output = new Array(a.length).fill(0);
+    let count = new Array(10).fill(0);
+
+    for (let i = 0; i < a.length; i++) {
+        count[ Math.floor(a[i] / exp) % 10 ]++;
+    }
+
+    for (let i = 1; i < 10; i++) {
+        count[i] += count[i-1];
+    }
+
+    for (let i = a.length - 1; i >= 0; i--) {
+        output[count[Math.floor(a[i]/exp)%10]-1] = a[i];
+        count[Math.floor(a[i]/exp)%10]--;
+    }
+
+    for (let i = 0; i < a.length; i++) {
+        a[i] = output[i];
+        allArr.push(a.slice());
     }
 }

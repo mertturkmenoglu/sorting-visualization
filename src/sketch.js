@@ -24,7 +24,8 @@ function setup() {
         'Insertion Sort': 'insertionSort',
         'Selection Sort': 'selectionSort',
         'Heap Sort': 'heapSort',
-        'Tim Sort': 'timSort'
+        'Tim Sort': 'timSort',
+        'Radix Sort': 'radixSort'
     };
 
     validKeys = {
@@ -56,14 +57,19 @@ function draw() {
     background(127);
 
     if (drawingStatus) {
-        if (loopStatus === "loop") {
-            drawArray(allArr[k++], minElement, maxElement);
-            if (k >= allArr.length) {
-                k = 0;
-                loopStatus = "noLoop";
-            }
+        if (lastOperationTime === 0) {
+            loopStatus = 'noLoop';
+            drawingStatus = false;
         } else {
-            drawArray(allArr[allArr.length -1], minElement, maxElement);
+            if (loopStatus === "loop") {
+                drawArray(allArr[k++], minElement, maxElement);
+                if (k >= allArr.length) {
+                    k = 0;
+                    loopStatus = "noLoop";
+                }
+            } else {
+                drawArray(allArr[allArr.length -1], minElement, maxElement);
+            }
         }
     } else {
         drawArray(arr, minElement, maxElement);
