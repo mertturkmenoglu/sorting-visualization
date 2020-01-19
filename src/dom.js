@@ -1,9 +1,10 @@
 let algSelect;
 let nSelect;
 let startButton;
-let generateButton;
-let orderedButton;
+let randomButton;
+let sortedButton;
 let shuffleButton;
+let reversedButton;
 let resetButton;
 let helpButton;
 
@@ -11,9 +12,10 @@ function initDOM() {
     algSelect = document.getElementById('alg-select');
     nSelect = document.getElementById('n-select');
     startButton = document.getElementById('start-button');
-    generateButton = document.getElementById('generate-button');
-    orderedButton = document.getElementById('ordered-button');
+    randomButton = document.getElementById('random-button');
+    sortedButton = document.getElementById('sorted-button');
     shuffleButton = document.getElementById('shuffle-button');
+    reversedButton = document.getElementById('reversed-button');
     resetButton = document.getElementById('reset-button');
     helpButton = document.getElementById('help-button');
 
@@ -57,18 +59,24 @@ function initDOM() {
         drawingStatus = true;
     };
 
-    generateButton.onclick = () => {
+    randomButton.onclick = () => {
         generateRandomArray();
         reset();
     };
 
-    orderedButton.onclick = () => {
+    sortedButton.onclick = () => {
         generateOrderedArray();
         reset();
     };
 
     shuffleButton.onclick = () => {
         arr = shuffleArray(arr);
+        reset();
+    };
+
+    reversedButton.onclick = () => {
+        generateOrderedArray();
+        arr = arr.reverse();
         reset();
     };
 
