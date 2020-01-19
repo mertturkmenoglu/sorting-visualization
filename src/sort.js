@@ -40,6 +40,9 @@ function callSortFunction(fName) {
         case 'shellSort':
             shellSort(arr.slice());
             break;
+        case 'cycleSort':
+            cycleSort(arr.slice());
+            break;
     }
 
     after = millis();
@@ -309,6 +312,50 @@ function shellSort(a) {
             }
 
             a[j] = tmp;
+            allArr.push(a.slice());
+        }
+    }
+}
+
+function cycleSort(a) {
+    for (let c = 0; c < a.length - 1; c++) {
+        let item = a[c];
+        let pos = c;
+
+        for (let i = c + 1; i < a.length; i++) {
+            if (a[i] < item) {
+                pos++;
+            }
+        }
+
+        if (pos === c) {
+            continue;
+        }
+
+        while (item === a[pos]) {
+            pos++;
+        }
+
+        let tmp = a[pos];
+        a[pos] = item;
+        item = tmp;
+        allArr.push(a.slice());
+
+        while (pos !== c) {
+            pos = c;
+            for (let i = c + 1; i < a.length; i++) {
+                if (a[i] < item) {
+                    pos++;
+                }
+            }
+
+            while (item === a[pos]) {
+                pos++;
+            }
+
+            tmp = a[pos];
+            a[pos] = item;
+            item = tmp;
             allArr.push(a.slice());
         }
     }
