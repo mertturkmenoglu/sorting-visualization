@@ -46,6 +46,9 @@ function callSortFunction(fName) {
         case 'oddEvenSort':
             oddEvenSort(arr.slice());
             break;
+        case 'cocktailSort':
+            cocktailSort(arr.slice());
+            break;
     }
 
     after = millis();
@@ -388,5 +391,42 @@ function oddEvenSort(a) {
                 sorted = false;
             }
         }
+    }
+}
+
+function cocktailSort(a) {
+    let swapped = true;
+    let start = 0;
+    let end = a.length - 1;
+    allArr.push(a.slice());
+
+    while (swapped) {
+        swapped = false;
+
+        for (let i = start; i < end; i++) {
+            if (a[i] > a[i+1]) {
+                let tmp = a[i];
+                a[i] = a[i+1];
+                a[i+1] = tmp;
+                swapped = true;
+                allArr.push(a.slice());
+            }
+        }
+
+        if (swapped) {
+            swapped = false;
+            end--;
+            for (let i = end - 1; i >= start; i--) {
+                if (a[i] > a[i+1]) {
+                    let tmp = a[i];
+                    a[i] = a[i+1];
+                    a[i+1] = tmp;
+                    swapped = true;
+                    allArr.push(a.slice());
+                }
+            }
+        }
+
+        start++;
     }
 }

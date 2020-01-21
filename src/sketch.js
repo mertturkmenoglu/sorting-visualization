@@ -28,7 +28,8 @@ function setup() {
         'Radix Sort': 'radixSort',
         'Shell Sort': 'shellSort',
         'Cycle Sort': 'cycleSort',
-        'Odd Even Sort': 'oddEvenSort'
+        'Odd Even Sort': 'oddEvenSort',
+        'Cocktail Sort': 'cocktailSort'
     };
 
     validKeys = {
