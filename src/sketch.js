@@ -13,7 +13,10 @@ let validKeys;
 let lastOperationTime;
 
 function setup() {
-    cnv = createCanvas(1280, 640);
+    const navBar = document.getElementById('nav-bar');
+    const h = window.innerHeight - 2 * navBar.offsetHeight;
+    const w = 2 * h;
+    cnv = createCanvas(w, h);
     cnv.parent('container');
     allArr = [];
 
@@ -83,7 +86,7 @@ function draw() {
     if (lastOperationTime !== 0) {
         textSize(24);
         fill(255);
-        text('Sorting time: ' + (lastOperationTime / 1000).toFixed(6) + ' seconds', 20, 20);
+        text('Real sorting time: ' + (lastOperationTime / 1000).toFixed(6) + ' seconds', 20, 20);
     }
 }
 
