@@ -1,8 +1,12 @@
+import AppBar from './components/AppBar';
+import { AppContextProvider } from './contexts/AppContextProvider';
+
 function App() {
   return (
-    <div>
+    <AppContextProvider>
+      <AppBar />
       <div>Sorting Visualization</div>
-    </div>
+    </AppContextProvider>
   );
 }
 
